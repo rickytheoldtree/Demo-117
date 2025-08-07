@@ -1,0 +1,178 @@
+[
+  {
+    "name": "English",
+    "local_name": "English"
+  },
+  {
+    "name": "French",
+    "local_name": "Français"
+  },
+  {
+    "name": "German",
+    "local_name": "Deutsch"
+  },
+  {
+    "name": "Spanish",
+    "local_name": "Española"
+  },
+  {
+    "name": "Indonesian",
+    "local_name": "Indonesia"
+  },
+  {
+    "name": "Italian",
+    "local_name": "Italiana"
+  },
+  {
+    "name": "Portuguese",
+    "local_name": "Português"
+  },
+  {
+    "name": "Hindi",
+    "local_name": "हिंदी"
+  },
+  {
+    "name": "Japanese",
+    "local_name": "日本語"
+  },
+  {
+    "name": "Korean",
+    "local_name": "한국인"
+  },
+  {
+    "name": "Russian",
+    "local_name": "Русский"
+  },
+  {
+    "name": "Thai",
+    "local_name": "แบบไทย"
+  },
+  {
+    "name": "Malay",
+    "local_name": "Melayu"
+  },
+  {
+    "name": "ChineseSimplified",
+    "local_name": "简体中文"
+  },
+  {
+    "name": "ChineseTraditional",
+    "local_name": "繁體中文"
+  },
+  {
+    "name": "Vietnamese",
+    "local_name": "Tiếng Việt"
+  },
+  {
+    "name": "Arabic",
+    "local_name": "عربي"
+  },
+  {
+    "name": "Polish",
+    "local_name": "Polski"
+  },
+  {
+    "name": "Dutch",
+    "local_name": "Nederlands"
+  },
+  {
+    "name": "Hungarian",
+    "local_name": "Magyar"
+  },
+  {
+    "name": "Czech",
+    "local_name": "Čeština"
+  },
+  {
+    "name": "Romanian",
+    "local_name": "Română"
+  },
+  {
+    "name": "Greek",
+    "local_name": "Ελληνικά"
+  },
+  {
+    "name": "Swedish",
+    "local_name": "Svenska"
+  },
+  {
+    "name": "Slovak",
+    "local_name": "Slovenský"
+  },
+  {
+    "name": "Finnish",
+    "local_name": "Suomalainen"
+  },
+  {
+    "name": "Luxembourgish",
+    "local_name": "Lëtzebuergesch"
+  },
+  {
+    "name": "Danish",
+    "local_name": "Dansk"
+  },
+  {
+    "name": "Norwegian",
+    "local_name": "Norsk"
+  },
+  {
+    "name": "Icelandic",
+    "local_name": "Íslenskur"
+  },
+  {
+    "name": "Serbian",
+    "local_name": "Српски"
+  },
+  {
+    "name": "Turkish",
+    "local_name": "Türkçe"
+  },
+  {
+    "name": "Lithuanian",
+    "local_name": "Lietuvių"
+  },
+  {
+    "name": "Ukrainian",
+    "local_name": "Українська"
+  },
+  {
+    "name": "Slovenian",
+    "local_name": "Slovenski"
+  },
+  {
+    "name": "Latvian",
+    "local_name": "Latviski"
+  },
+  {
+    "name": "Estonian",
+    "local_name": "Igauņu"
+  },
+  {
+    "name": "Croatian",
+    "local_name": "Hrvatski"
+  },
+  {
+    "name": "Bengali",
+    "local_name": "বাংলা"
+  },
+  {
+    "name": "Punjabi",
+    "local_name": "ਪੰਜਾਬੀ"
+  },
+  {
+    "name": "Telugu",
+    "local_name": "తెలుగు"
+  },
+  {
+    "name": "Marathi",
+    "local_name": "मराठी"
+  },
+  {
+    "name": "Tamil",
+    "local_name": "தமிழ்"
+  },
+  {
+    "name": "Urdu",
+    "local_name": "اردو"
+  }
+]
