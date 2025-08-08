@@ -1,4 +1,5 @@
-﻿using Demo_117.GamePlay.Cmds;
+﻿using Cysharp.Threading.Tasks;
+using Demo_117.GamePlay.Cmds;
 using Demo_117.Services;
 using RicKit.RFramework;
 using UnityEngine;
@@ -23,7 +24,15 @@ namespace Demo_117.GamePlay
             cannonBallPool = new ObjectPool<GameObject>(
                 () => Instantiate(cannonBallPrefab, transform.position, Quaternion.identity),
                 obj => obj.SetActive(true),
-                obj => obj.SetActive(false),
+                obj =>
+                {
+                    //清理炮弹状态
+                    if (obj.TryGetComponent(out Rigidbody rb))
+                        rb.velocity = Vector3.zero;
+                    if (obj.TryGetComponent<TrailRenderer>(out var trailRenderer))
+                        trailRenderer.Clear();
+                    obj.SetActive(false);
+                },
                 Destroy,
                 false, 10, 20);
             
@@ -44,17 +53,30 @@ namespace Demo_117.GamePlay
         private void OnShoot(ShootEvent e)
         {
             //从对象池中获取一个炮弹
+            // 从对象池获取并初始化炮弹
             var cannonBall = cannonBallPool.Get();
-            cannonBall.transform.position = launchPoint.position;
-            cannonBall.transform.rotation = launchPoint.rotation;
+            cannonBall.transform.SetPositionAndRotation(launchPoint.position, launchPoint.rotation);
             cannonBall.SetActive(true);
-            
-            //设置炮弹的速度和方向
-            var rb = cannonBall.GetComponent<Rigidbody>();
-            if (rb)
+
+            // 偏移角度（度）
+            float maxDeviation = 1f; // 可调，例如 1 度
+            // 随机生成旋转：先绕右轴偏移，再绕前轴随机旋转一圈
+            Quaternion randomRotation =
+                Quaternion.AngleAxis(Random.Range(0f, 360f), launchPoint.forward) *
+                Quaternion.AngleAxis(Random.Range(0f, maxDeviation), launchPoint.up);
+
+            // 计算方向
+            Vector3 direction = (randomRotation * launchPoint.forward).normalized;
+
+            // 设置速度
+            if (cannonBall.TryGetComponent(out Rigidbody rb))
+                rb.velocity = direction * e.power;
+
+            // 延迟释放炮弹
+            UniTask.Delay(15000).ContinueWith(() =>
             {
-                rb.velocity = launchPoint.forward * e.power;
-            }
+                if(cannonBall) cannonBallPool.Release(cannonBall);
+            });
             
             //可以在这里添加更多逻辑，比如播放发射音效等
         }

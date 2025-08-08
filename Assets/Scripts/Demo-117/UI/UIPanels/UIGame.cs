@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using Demo_117.GamePlay.Cmds;
 using Demo_117.Services;
@@ -15,20 +14,24 @@ namespace Demo_117.UI.UIPanels
     public class UIGame : FadeUIPanel, ICanGetLocator<Entity>
     {
         [SerializeField]
-        private Button btnShoot, btnPause;
+        private Button btnShoot, btnPause, btnNext, btnPrev;
         [SerializeField]
         private TMP_Text txtScore;
         private int someParameter;
         private IInGameDataService inGameDataService;
+        private IGameCameraService gameCameraService;
         protected override void Awake()
         {
             base.Awake();
             // 获取服务
             this.TryGetService(out inGameDataService);
+            this.TryGetService(out gameCameraService);
             
             // 绑定按钮点击事件
             btnShoot.onClick.AddListener(OnShootClick);
             btnPause.onClick.AddListener(OnPauseClick);
+            btnNext.onClick.AddListener(OnNextCameraClick);
+            btnPrev.onClick.AddListener(OnPrevCameraClick);
             
             // 注册分数更新事件
             inGameDataService.Score.RegisterAndInvoke(OnScoreUpdated);
@@ -60,6 +63,16 @@ namespace Demo_117.UI.UIPanels
             //如果不在UI系统的界面里调用，则请走IUIService
             // this.GetService<IUIService>().ShowUI<UIPause>();
             UI.ShowUI<UIPause>();
+        }
+        
+        private void OnNextCameraClick()
+        {
+            gameCameraService.NextPos();
+        }
+        
+        private void OnPrevCameraClick()
+        {
+            gameCameraService.PrevPos();
         }
         
         // 分数更新回调

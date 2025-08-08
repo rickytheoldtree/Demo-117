@@ -1,4 +1,6 @@
-﻿using RicKit.RFramework;
+﻿using System;
+using Demo_117.Services;
+using RicKit.RFramework;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,11 +12,33 @@ namespace Demo_117.GamePlay
         
         private Vector2 lastMousePosition;
         private bool mouseDown;
+        private bool reverseY;
+        
+        private IGameCameraService gameCameraService;
         
         private void Awake()
         {
-            // 获取EventSystem和UIService
+            // 获取EventSystem和服务
             eventSystem = EventSystem.current;
+            this.TryGetService(out gameCameraService);
+        }
+
+        private void OnEnable()
+        {
+            // 注册摄像机变更事件
+            this.RegisterEvent<CameraChangeEvent>(OnCameraChanged);
+            reverseY = gameCameraService.GetCurrentCameraData().reverseY;
+        }
+        
+        private void OnDisable()
+        {
+            // 注销摄像机变更事件
+            this.UnRegisterEvent<CameraChangeEvent>(OnCameraChanged);
+        }
+        
+        private void OnCameraChanged(CameraChangeEvent e)
+        {
+            reverseY = e.data.reverseY;
         }
 
         private void Update()
@@ -53,7 +77,7 @@ namespace Demo_117.GamePlay
             if (euler.y > 180f) euler.y -= 360f;
 
             // 增加旋转量
-            euler.x -= delta.y * rotationSpeed; // 注意鼠标Y要反向
+            euler.x = reverseY ? euler.x - delta.y * rotationSpeed : euler.x + delta.y * rotationSpeed; // 注意鼠标Y要反向
             euler.y += delta.x * rotationSpeed;
 
             // 限制范围

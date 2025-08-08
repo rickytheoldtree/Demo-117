@@ -50,6 +50,9 @@ namespace Demo_117
             //业务服务可以在这里注册
             #region 业务服务
             
+            //相机服务（用于处理游戏中的相机逻辑）
+            RegisterService<IGameCameraService>(new GameCameraService());
+            
             //游戏服务（玩法逻辑）一般来说会设计的很大，不过可以通过拆分成小的模块来管理，也可以善用Command来减负
             //RegisterService<IGameService>(new GameService());
             
