@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Demo_117.GamePlay.Cmds;
 using Demo_117.Services;
+using Demo_117.UI.UIComponents;
 using RicKit.RFramework;
 using RicKit.UI.Panels;
 using TMPro;
@@ -14,7 +15,9 @@ namespace Demo_117.UI.UIPanels
     public class UIGame : FadeUIPanel, ICanGetLocator<Entity>
     {
         [SerializeField]
-        private Button btnShoot, btnPause, btnNext, btnPrev;
+        private Button btnPause, btnNext, btnPrev;
+        [SerializeField] 
+        private AutoTriggerComponent autoTriggerShoot;
         [SerializeField]
         private TMP_Text txtScore;
         private int someParameter;
@@ -28,7 +31,7 @@ namespace Demo_117.UI.UIPanels
             this.TryGetService(out gameCameraService);
             
             // 绑定按钮点击事件
-            btnShoot.onClick.AddListener(OnShootClick);
+            autoTriggerShoot.AddListener(OnShootClick);
             btnPause.onClick.AddListener(OnPauseClick);
             btnNext.onClick.AddListener(OnNextCameraClick);
             btnPrev.onClick.AddListener(OnPrevCameraClick);
@@ -40,7 +43,10 @@ namespace Demo_117.UI.UIPanels
         private void OnDestroy()
         {
             // 解绑按钮点击事件，不过Unity按钮在销毁时会自动解绑，所以这一步可以省略
-            btnShoot.onClick.RemoveListener(OnShootClick);
+            autoTriggerShoot.RemoveListener(OnShootClick);
+            btnPause.onClick.RemoveListener(OnPauseClick);
+            btnNext.onClick.RemoveListener(OnNextCameraClick);
+            btnPrev.onClick.RemoveListener(OnPrevCameraClick);
             
             // 注销分数更新事件
             inGameDataService.Score.UnRegister(OnScoreUpdated);

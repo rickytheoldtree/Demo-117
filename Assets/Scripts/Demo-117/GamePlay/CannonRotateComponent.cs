@@ -44,14 +44,14 @@ namespace Demo_117.GamePlay
         private void Update()
         {
             // 检测鼠标按下事件
-            if (Input.GetMouseButtonDown(0) && !eventSystem.IsPointerOverGameObject())
+            if (GetMouseDown() && !IsOverUI())
             {
                 mouseDown = true;
                 lastMousePosition = GetMousePosition();
             }
 
             // 检测鼠标释放事件
-            if (Input.GetMouseButtonUp(0))
+            if (GetMouseUp())
             {
                 mouseDown = false;
             }
@@ -95,6 +95,32 @@ namespace Demo_117.GamePlay
             return Application.isEditor ?
                 new Vector2(Input.mousePosition.x, Input.mousePosition.y) :
                 new Vector2(Input.touches[0].position.x, Input.touches[0].position.y);
+        }
+        
+        private bool GetMouseDown()
+        {
+            return Application.isEditor ? Input.GetMouseButtonDown(0) :
+                Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began;
+        }
+
+        private bool GetMouseUp()
+        {
+            return Application.isEditor ? Input.GetMouseButtonUp(0) : 
+                Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended;
+        }
+        
+        private bool IsOverUI()
+        {
+            if (Application.isEditor)
+            {
+                return eventSystem.IsPointerOverGameObject();
+            }
+
+            if (Input.touchCount > 0)
+            {
+                return eventSystem.IsPointerOverGameObject(Input.touches[0].fingerId);
+            }
+            return false;
         }
     }
 }

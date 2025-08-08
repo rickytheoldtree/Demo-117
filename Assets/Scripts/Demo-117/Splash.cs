@@ -17,6 +17,7 @@ namespace Demo_117
         private CanvasGroup cgLoading; //简陋的Splash界面
         private void Awake()
         {
+            Application.targetFrameRate = 120;
             //初始化框架
             Entity.Initialize();
             
