@@ -1,5 +1,4 @@
-﻿using System;
-using Demo_117.GamePlay.Cmds;
+﻿using Demo_117.GamePlay.Cmds;
 using Demo_117.Services;
 using RicKit.RFramework;
 using UnityEngine;
@@ -10,18 +9,19 @@ namespace Demo_117.GamePlay
     public class Cannon : MonoBehaviour, ICanGetLocator<Entity>
     {
         [SerializeField] private Transform launchPoint; //发射点
-        private IAssetService assetService;
         private GameObject cannonBallPrefab; //这里可以使用SerializeField来在Inspector中设置预制体，这里演示使用代码加载
+        private ObjectPool<GameObject> cannonBallPool; //对象池，用于管理炮弹实例
+        private IAssetService assetService;
         
-        private ObjectPool<GameObject> cannonBallPool;
         public void Awake()
         {
+            //依赖注入，获取需要的服务
             this.TryGetService(out assetService);
             //加载预制体
             cannonBallPrefab = assetService.Load<GameObject>("Prefabs/CannonBall");
             //初始化对象池
             cannonBallPool = new ObjectPool<GameObject>(
-                () => Instantiate(cannonBallPrefab, transform.position, Quaternion.identity, transform),
+                () => Instantiate(cannonBallPrefab, transform.position, Quaternion.identity),
                 obj => obj.SetActive(true),
                 obj => obj.SetActive(false),
                 Destroy,
