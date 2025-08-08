@@ -38,7 +38,7 @@ namespace Demo_117.GamePlay
             TweenToCamera(e.data, duration, ease);
         }
 
-// 将输入FOV标准化为“垂直FOV”，Unity 的 Camera.fieldOfView 是垂直FOV
+        // 将输入FOV标准化为“垂直FOV”，Unity 的 Camera.fieldOfView 是垂直FOV
         private float ToVerticalFOV(float fovDeg, bool isHorizontal, float aspect)
         {
             fovDeg = Mathf.Clamp(fovDeg, 1f, 170f);
