@@ -88,39 +88,80 @@ namespace Demo_117.GamePlay
             transform.localEulerAngles = euler;
         }
 
+        // 新增到你的类里
+        private int activeFingerId = -1;   // -1 表示当前不使用触摸
+        private Vector2 lastTouchPos;
 
-        // 针对不同平台获取鼠标位置
         private Vector2 GetMousePosition()
         {
-            return Application.isEditor ?
-                new Vector2(Input.mousePosition.x, Input.mousePosition.y) :
-                new Vector2(Input.touches[0].position.x, Input.touches[0].position.y);
+            if (activeFingerId != -1)
+            {
+                // 只读被锁定的手指
+                for (int i = 0; i < Input.touchCount; i++)
+                {
+                    var t = Input.touches[i];
+                    if (t.fingerId == activeFingerId)
+                    {
+                        lastTouchPos = t.position;
+                        return t.position;
+                    }
+                }
+                // 找不到（本帧刚抬起等），先用上一次
+                return lastTouchPos;
+            }
+
+            return Input.mousePosition;
         }
-        
+
         private bool GetMouseDown()
         {
-            return Application.isEditor ? Input.GetMouseButtonDown(0) :
-                Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began;
+            // 有触摸：只认“第一个手指”——GetTouch(0)，并锁定它的 fingerId
+            if (activeFingerId == -1 && Input.touchCount > 0)
+            {
+                var t0 = Input.GetTouch(0);
+                activeFingerId = t0.fingerId;
+                lastTouchPos = t0.position;
+                return t0.phase == TouchPhase.Began;
+            }
+
+            // 否则用鼠标
+            return Input.GetMouseButtonDown(0);
         }
 
         private bool GetMouseUp()
         {
-            return Application.isEditor ? Input.GetMouseButtonUp(0) : 
-                Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended;
-        }
-        
-        private bool IsOverUI()
-        {
-            if (Application.isEditor)
+            if (activeFingerId != -1)
             {
-                return eventSystem.IsPointerOverGameObject();
+                // 只看被锁定的那根是否 Ended/Canceled
+                for (int i = 0; i < Input.touchCount; i++)
+                {
+                    var t = Input.touches[i];
+                    if (t.fingerId == activeFingerId &&
+                        (t.phase == TouchPhase.Ended || t.phase == TouchPhase.Canceled))
+                    {
+                        activeFingerId = -1;
+                        return true;
+                    }
+                }
+
+                // 若本帧没有任何触点，也算结束（某些平台抬起后 touchCount 先变 0）
+                if (Input.touchCount == 0)
+                {
+                    activeFingerId = -1;
+                    return true;
+                }
+                return false;
             }
 
-            if (Input.touchCount > 0)
-            {
-                return eventSystem.IsPointerOverGameObject(Input.touches[0].fingerId);
-            }
-            return false;
+            return Input.GetMouseButtonUp(0);
+        }
+
+        private bool IsOverUI()
+        {
+            if (activeFingerId != -1)
+                return eventSystem.IsPointerOverGameObject(activeFingerId);
+
+            return eventSystem.IsPointerOverGameObject();
         }
     }
 }
