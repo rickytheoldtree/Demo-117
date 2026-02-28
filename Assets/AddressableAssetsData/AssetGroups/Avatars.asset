@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Avatars
+  m_EditorClassIdentifier: 
+  m_GroupName: Avatars
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 18c042adc62339c4f85aa9b2883ffaca
+  m_SerializeEntries:
+  - m_GUID: 46f7561188e4c0f459731a623f748b69
+    m_Address: Assets/Demo-117/Sprites/Frames.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccacb816703ad844b9c1d4058043c688
+    m_Address: Assets/Demo-117/Sprites/Icons.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bda205e885ae6cb4783dd06f34c2aefa, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 293ef260d8324f04cbca2fe14c392b8d, type: 2}
+    - {fileID: 11400000, guid: e0b78d147195f024c9ab7ccae6cf5b52, type: 2}

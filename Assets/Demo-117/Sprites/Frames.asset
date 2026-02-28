@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6122a17c09b4f84b412bdaf59b71191, type: 3}
+  m_Name: Frames
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 4316e0b2b76c4e3439a1b142e34ff515, type: 3}
+  - {fileID: 21300000, guid: 248520401f6c9df4db867c0fb870426a, type: 3}
+  - {fileID: 21300000, guid: fbc4ebe32f569954db432de0224524e5, type: 3}
+  - {fileID: 21300000, guid: 65dd369d8a0ed7643b794ba4e103b2a5, type: 3}
+  - {fileID: 21300000, guid: 8c0d8f2089da5164fb3de24dc5e1e47b, type: 3}
+  - {fileID: 21300000, guid: 3b5c83aa4f71e224b93e45150f96879e, type: 3}

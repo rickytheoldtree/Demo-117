@@ -21,4 +21,4 @@ MonoBehaviour:
   referenceResolution: {x: 1080, y: 1920}
   screenMatchMode: 1
   matchWidthOrHeight: 1
-  assetPathPrefix: UI/
+  assetPathPrefix: 

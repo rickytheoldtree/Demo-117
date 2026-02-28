@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SplashAssets
+  m_EditorClassIdentifier: 
+  m_GroupName: SplashAssets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 0fc5ab245b4b709419dc03babbd8d31d
+  m_SerializeEntries:
+  - m_GUID: 0d8cfc3482d1b8944b4030387e636343
+    m_Address: Assets/Demo-117/Prefabs/Splash/txtLoading.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bda205e885ae6cb4783dd06f34c2aefa, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8507bd7c42711f245a4673a7317698cd, type: 2}
+    - {fileID: 11400000, guid: 42fd8c99f9532a548a0334884ac45888, type: 2}
